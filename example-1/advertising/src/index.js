@@ -1,4 +1,5 @@
 const express = require("express");
+const axios = require("axios");
 const mongodb = require("mongodb");
 const bodyParser = require("body-parser");
 
@@ -76,6 +77,18 @@ function startMicroservice(dbHost, dbName) {
   return connectDb(dbHost, dbName) // Connect to the database...
     .then((dbConn) => {
       // then...
+      if (process.env.NODE_ENV == "development") {
+        axios
+          .get("http://db-fixture-rest-api/load-fixture", {
+            params: {
+              fix: "five-ads",
+              db: dbName,
+            },
+          })
+          .then((x) => {
+            console.log("Fixture");
+          });
+      }
       return startHttpServer(
         // start the HTTP server.
         dbConn

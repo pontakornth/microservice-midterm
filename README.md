@@ -1,6 +1,8 @@
 # FIXTURE LOCATION
 
-The fixture for advertising collection is in five-ads. The collection and database name must be `advertising`.
+The fixture for advertising collection is in `five-ads`. The name of collection and database must be `advertising`.
+
+The fixture should be loaded after it runs. Also, API gateway seems to fail on the first but restarting it should fix the issue.
 
 # Chapter-9
 
