@@ -19,26 +19,27 @@ function connectDb(dbHost, dbName) {
 }
 
 function setupHandlers(microservice) {
-  const advertisingCollections = microservice.db.collection("ads");
+  const advertisingCollections = microservice.db.collection("advertising");
   microservice.app.get("/ad", (req, res) => {
-    // return advertisingCollections
-    //   .aggregate([{ $sample: { size: 1 } }])
-    //   .toArray()
-    //   .then((ads) => {
-    //     const ad = ads[0];
-    //     res.json({
-    //       ad,
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     console.error("Failed to get ads");
-    //     console.error((err && err.stack) || err);
-    //     res.sendStatus(500);
-    //   });
-    res.json({
-      name: "Test ads",
-      link: "https://google.com",
-    });
+    return advertisingCollections
+      .aggregate([{ $sample: { size: 1 } }])
+      .toArray()
+      .then((ads) => {
+        const ad = ads[0];
+        res.json({
+          name: ad.name,
+          link: ad.link,
+        });
+      })
+      .catch((err) => {
+        console.error("Failed to get ads");
+        console.error((err && err.stack) || err);
+        res.sendStatus(500);
+      });
+    // res.json({
+    //   name: "Test ads",
+    //   link: "https://google.com",
+    // });
   });
 }
 
