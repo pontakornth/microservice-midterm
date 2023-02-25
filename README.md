@@ -1,8 +1,12 @@
+# FIXTURE LOCATION
+
+The fixture for advertising collection is in five-ads. The collection and database name must be `advertising`.
+
 # Chapter-9
 
 Code and examples for Chapter 9 of [Bootstrapping Microservices](https://www.bootstrapping-microservices.com).
 
-The chapter 9 code repository contains the complete working example application: FlixTube. This is what we have been building up to all though the book. 
+The chapter 9 code repository contains the complete working example application: FlixTube. This is what we have been building up to all though the book.
 
 Chapter 9 of Bootstrapping Microservices is an overview of the FlixTube example application.
 
