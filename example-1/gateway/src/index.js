@@ -84,8 +84,20 @@ function setupHandlers(app) {
               url: `/api/video?id=${videoId}`,
             };
 
+            axios
+              .get("http://advertising/ad")
+              .then((adsRes) => {
+                res.render("play-video", {
+                  video,
+                  ad: adsRes.data,
+                });
+              })
+              .catch((err) => {
+                console.error("Failed to get ads");
+                res.sendStatus(500);
+              });
             // Renders the video for display in the browser.
-            res.render("play-video", { video });
+            // res.render("play-video", { video });
           });
 
           response.on("error", (err) => {
@@ -102,7 +114,17 @@ function setupHandlers(app) {
   // Web page to upload a new video.
   //
   app.get("/upload", (req, res) => {
-    res.render("upload-video", {});
+    axios
+      .get("http://advertising/ad")
+      .then((adsRes) => {
+        res.render("upload-video", {
+          ad: adsRes.data,
+        });
+      })
+      .catch((err) => {
+        console.error("Failed to get ads");
+        res.sendStatus(500);
+      });
   });
 
   //
@@ -125,7 +147,18 @@ function setupHandlers(app) {
 
           response.on("end", () => {
             // Renders the history for display in the browser.
-            res.render("history", { videos: JSON.parse(data).videos });
+            axios
+              .get("http://advertising/ad")
+              .then((adsRes) => {
+                res.render("history", {
+                  ad: adsRes.data,
+                  videos: JSON.parse(data).videos,
+                });
+              })
+              .catch((err) => {
+                console.error("Failed to get ads");
+                res.sendStatus(500);
+              });
           });
 
           response.on("error", (err) => {
