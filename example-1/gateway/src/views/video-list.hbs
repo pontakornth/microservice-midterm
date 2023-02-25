@@ -33,7 +33,7 @@
                     {{#if videos}}
                         {{#each videos}}
                             <div class="mt-1">
-                                <a href="/video?id={{this._id}}">{{this.name}}</a> 
+                                <a href="/video?id={{this._id}}">{{this.name}}</a>
                             </div>
                         {{/each}}
                     {{else}}
@@ -42,5 +42,10 @@
                 </div>
             </div>
         </div>
+            {{#if ad}}
+        <footer>
+            <a href="{{ad.link}}">{{ad.name}}</a>
+        </footer>
+            {{/if}}
     </body>
 </html>
