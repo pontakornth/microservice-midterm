@@ -37,5 +37,10 @@
 	            </video>
             </div>
         </div>
+            {{#if ad}}
+        <footer>
+            <a href="{{ad.link}}">Advertising: {{ad.name}}</a>
+        </footer>
+            {{/if}}
     </body>
 </html>
